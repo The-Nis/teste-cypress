@@ -33,6 +33,21 @@ npm run test
 ```
 <hr>
 
+### Erro de timeout
+
+Pode ocorrer um erro de timeout e se não abrir é só repetir o procedimento ou aumentar o tempo de verificação no arquivo verify.js no caminho:
+node-modules\cypress\lib\tasks\verify.js
+Basta localizar a contante:
+```
+const VERIFY_TEST_RUNNER_TIMEOUT_MS = +util.getEnv('CYPRESS_VERIFY_TIMEOUT') || 30000;
+```
+e alterar para:
+```
+const VERIFY_TEST_RUNNER_TIMEOUT_MS = +util.getEnv('CYPRESS_VERIFY_TIMEOUT') || 100000;
+```
+
+<hr>
+
 ### Extensões para VSCode
 
 **Add Only (Ivan Ladyha)** - Adiciona ou remove o .only de um teste.<br>
