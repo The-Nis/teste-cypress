@@ -1,0 +1,14 @@
+{
+  "name": "teste-cypress",
+  "version": "1.0.0",
+  "description": "Teste E2E com Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "author": "Denis Fernando",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.11.0"
+  }
+}
