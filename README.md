@@ -33,6 +33,14 @@ npm run test
 ```
 <hr>
 
+### Executar testes no terminal (background)
+
+```
+npx cypress run
+```
+
+<hr>
+
 ### Erro de timeout
 
 Pode ocorrer um erro de timeout e se não abrir é só repetir o procedimento ou aumentar o tempo de verificação no arquivo verify.js no caminho:
