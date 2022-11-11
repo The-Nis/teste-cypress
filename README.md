@@ -39,6 +39,24 @@ npm run test
 npx cypress run
 ```
 
+Para gerar o relatório em HTML digite no terminal
+
+```
+npm i -D mochawesome
+```
+depois na pasta principal crie um arquivo cypress.json e insira as seguintes informações
+
+```
+"reporter": "mochawesome",
+    "reporterOptions": {
+    "reportDir": "cypress/report/mochawesome-report",
+    "overwrite": true,
+    "html": true,
+    "json": false,
+    "timestamp": "mmddyyyy_HHMMss"
+    }
+```
+
 <hr>
 
 ### Erro de timeout
