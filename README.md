@@ -33,6 +33,33 @@ npm run test
 ```
 <hr>
 
+### Executar testes no terminal (background)
+
+```
+npx cypress run
+```
+
+Para gerar o relatório em HTML digite no terminal
+
+```
+npm i -D mochawesome
+```
+depois na pasta principal dento de cypress.config.js, dentro de module.exports e depois de setupNodeEvents insira as seguintes informações
+
+```
+"reporter": "mochawesome",
+      "reporterOptions": {
+      "reportDir": "cypress/report/mochawesome-report",
+      "overwrite": true,
+      "html": true,
+      "json": false,
+      "timestamp": "mmddyyyy_HHMMss"
+      }
+```
+Será criada uma pasta chamada <b><i>report</i></b>, dentro dessa pasta tera a pasta <b><i>assets</i></b> e dentro dela o relatório em HTML.
+
+<hr>
+
 ### Erro de timeout
 
 Pode ocorrer um erro de timeout e se não abrir é só repetir o procedimento ou aumentar o tempo de verificação no arquivo verify.js no caminho:
