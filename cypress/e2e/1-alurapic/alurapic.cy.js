@@ -1,3 +1,5 @@
+// const { expect } = require("chai");
+
 describe('', () => {
     
     beforeEach(() => {
@@ -68,6 +70,23 @@ describe('', () => {
 
     });
 
+    it.only('fazer login de usuario valido', () => {
+        // cy.get('input[formcontrolname="userName"]').type('flavio');
+        // cy.get('input[formcontrolname="password"]').type('123');
+        // cy.get('button[type="submit"]').click();
+        cy.login('flavio', '123')
+        cy.contains('a', '(Logout)').should('be.visible');
+    });
+
+    it.only('fazer login de usuario invalido', () => {
+        // cy.get('input[formcontrolname="userName"]').type('denis');
+        // cy.get('input[formcontrolname="password"]').type('1234');
+        // cy.get('button[type="submit"]').click();
+        cy.login('denis', '1234')
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal('Invalid user name or password')
+        })
+    });
 
 
 });
