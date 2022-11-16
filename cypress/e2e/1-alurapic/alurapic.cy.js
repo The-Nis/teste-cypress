@@ -3,7 +3,10 @@
 describe('', () => {
     
     beforeEach(() => {
-        cy.visit('https://alura-fotos.herokuapp.com');
+        cy.visit('/');
+        cy.intercept('POST', 'https://apialurapic.herokuapp.com/user/login', {
+            statusCode: 400
+        }).as('stubPost')
     });
 
     it('verificar mensagens de validacao', () => {
@@ -59,7 +62,7 @@ describe('', () => {
         
     });
 
-    it('verificar senha com menos de 8 caracteres', () => {
+    it.only('verificar senha com menos de 8 caracteres', () => {
 
         cy.contains('a', 'Register now').click();
         cy.contains('button', 'Register').click();
@@ -70,11 +73,13 @@ describe('', () => {
 
     });
 
-    it('fazer login de usuario valido', () => {
+    it.only('fazer login de usuario valido', () => {
         // cy.get('input[formcontrolname="userName"]').type('flavio');
         // cy.get('input[formcontrolname="password"]').type('123');
         // cy.get('button[type="submit"]').click();
-        cy.login('flavio', '123')
+        // cy.login('flavio', '123') - não recomendado
+        cy.login(Cypress.env('userName'), Cypress.env('password'))
+        cy.wait('@stubPost')
         cy.contains('a', '(Logout)').should('be.visible');
     });
 
@@ -91,7 +96,7 @@ describe('', () => {
     const usuarios = require('../../fixtures/usuarios.json');
     
     usuarios.forEach(usuario => {
-        it.only(`resgitra novo usuario ${usuario.userName}`, () => {
+        it(`resgitra novo usuario ${usuario.userName}`, () => {
             cy.contains('a', 'Register now').click();
             cy.contains('button', 'Register').click();
             cy.get('input[formcontrolname="email"]').type(usuario.email);
